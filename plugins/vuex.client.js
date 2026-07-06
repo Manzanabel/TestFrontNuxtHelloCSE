@@ -110,6 +110,23 @@ const store = createStore({
   },
 
   actions: {
+
+    async toggleTodo({ commit }, id) {
+      const res = await fetch(`/api/todos/${id}`, { method: 'PUT' });
+       if (!res.ok) {
+        throw new Error(`Erreur serveur (${res.status})`);
+      }
+      commit('TOGGLE_TODO', id);
+    },
+
+    async deleteTodo({ commit }, id) {
+      const res = await fetch(`/api/todos/${id}`, { method: 'DELETE' });
+      if (!res.ok) {
+        throw new Error(`Erreur serveur (${res.status})`);
+      }
+      commit('DELETE_TODO', id);
+    },
+    
     async fetchTodos({ commit }) {
       console.log('action fetchTodos appelée');
       commit('SET_LOADING', true);

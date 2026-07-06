@@ -34,39 +34,19 @@ const StyledItem = styled('div', itemProps)`
   }
 `;
 
-function onToggle(): void {
-  console.log(
-    'onToggle appelé pour todo id:',
-    props.todo.id,
-    'état:',
-    props.todo.completed,
-  );
-  props.todo.completed = !props.todo.completed;
-  store.commit('TOGGLE_TODO', props.todo.id);
+async function onToggle(): Promise<void> {
+  try {
+    await store.dispatch('toggleTodo', props.todo.id);
+  } catch (e) {
+    console.error('erreur lors du toggle:', e);
+  }
 }
 
-function onDelete(): void {
-  console.log(
-    'onDelete appelé à',
-    moment().format('HH:mm:ss'),
-    'pour todo:',
-    props.todo.id,
-  );
-
+async function onDelete(): Promise<void> {
   try {
-    fetch(`/api/todos/${props.todo.id}`, {
-      method: 'DELETE',
-    })
-      .then((res) => {
-        console.log("réponse DELETE de l'API, status:", res.status);
-        store.commit('DELETE_TODO', props.todo.id);
-      })
-      .catch((e) => console.log('erreur lors du DELETE API:', e));
+    await store.dispatch('deleteTodo', props.todo.id);
   } catch (e) {
-    console.log(
-      'catch externe inutile (fetch retourne une Promise, pas throw):',
-      e,
-    );
+    console.error('erreur lors de la suppression:', e);
   }
 }
 
@@ -82,8 +62,8 @@ function getFormattedDate(): string {
 <template>
   <StyledItem :completed="props.todo.completed">
     <input
-      v-model="props.todo.completed"
       type="checkbox"
+      :checked="props.todo.completed"
       style="margin-right: 10px; width: 16px; height: 16px; cursor: pointer"
       @change="onToggle"
     />
