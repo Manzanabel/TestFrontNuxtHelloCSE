@@ -1,15 +1,8 @@
 <script setup lang="ts">
 import styled from 'vue3-styled-components';
 import _ from 'lodash';
-import moment from 'moment';
 import { useStore } from 'vuex';
-import type { Todo } from '~/server/utils/todoRepository';
-
-interface DisplayTodo extends Todo {
-  formattedDate?: string;
-  relativeDate?: string;
-  displayDate?: string;
-}
+import type { DisplayTodo } from '~/types/todos.types';
 
 const store = useStore();
 
@@ -48,14 +41,6 @@ async function onDelete(): Promise<void> {
   } catch (e) {
     console.error('erreur lors de la suppression:', e);
   }
-}
-
-function getDisplayText(text: string): string {
-  return _.capitalize(_.trim(text));
-}
-
-function getFormattedDate(): string {
-  return moment(props.todo.createdAt).format('LLLL');
 }
 </script>
 

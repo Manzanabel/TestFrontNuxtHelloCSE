@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "dayjs": "^1.11.21",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "nuxt": "^4.4.6",
@@ -14,12 +15,14 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "postinstall": "nuxt prepare",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "test": "vitest run"
   },
   "type": "module",
   "version": "0.1.0",
   "devDependencies": {
     "@types/lodash": "^4.17.24",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
   }
 }
