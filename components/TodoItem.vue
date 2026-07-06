@@ -27,28 +27,17 @@ async function onDelete(): Promise<void> {
 
 <template>
   <div class="todo-item" :class="{ 'todo-item--completed': todo.completed }">
-    <input
-      type="checkbox"
-      class="todo-item__checkbox"
-      :checked="todo.completed"
-      @change="onToggle"
-    />
+    <input type="checkbox" class="todo-item__checkbox" :checked="todo.completed" @change="onToggle" />
 
-  <span
-    class="todo-item__text"
-    :class="{ 'todo-item__text--completed': todo.completed }"
-  >
-    {{ getDisplayText(todo.text) }}
-  </span>
+    <span class="todo-item__text" :class="{ 'todo-item__text--completed': todo.completed }">
+      {{ getDisplayText(todo.text) }}
+    </span>
 
     <small class="todo-item__date">
-      {{ todo.displayDate || todo.formattedDate || getFormattedDate(todo.createdAt)}}
+      {{ todo.displayDate || todo.formattedDate || getFormattedDate(todo.createdAt) }}
     </small>
 
-    <button
-      class="btn btn-xs btn-danger todo-item__delete"
-      @click="onDelete"
-    >
+    <button class="btn btn-xs btn-danger todo-item__delete" @click="onDelete">
       ✕
     </button>
   </div>
