@@ -1,42 +1,9 @@
 <script setup>
-import styled from 'vue3-styled-components';
 import _ from 'lodash';
 import moment from 'moment';
 
 import { ref } from 'vue';
 import { useStore } from 'vuex';
-
-const StyledForm = styled.form`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-`;
-
-const StyledInput = styled.input`
-  flex: 1;
-  padding: 10px 14px;
-  border: 2px solid #007bff;
-  border-radius: 6px;
-  font-size: 15px;
-
-  &:focus {
-    border-color: #0056b3;
-  }
-`;
-
-const StyledButton = styled.button`
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: bold;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
 
 const store = useStore();
 
@@ -92,12 +59,47 @@ function addTodo() {
 </script>
 
 <template>
-  <StyledForm @submit.prevent="addTodo">
-    <StyledInput
+  <form class="todo-form" @submit.prevent="addTodo">
+    <input
       v-model="newTodo"
+      class="todo-form__input"
       type="text"
       placeholder="Ajouter une nouvelle tâche..."
     />
-    <StyledButton type="submit"> Ajouter </StyledButton>
-  </StyledForm>
+    <button class="todo-form__button" type="submit">Ajouter</button>
+  </form>
 </template>
+
+<style scoped lang="scss">
+.todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  &__input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 2px solid #007bff;
+    border-radius: 6px;
+    font-size: 15px;
+
+    &:focus {
+      border-color: #0056b3;
+    }
+  }
+
+  &__button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+</style>

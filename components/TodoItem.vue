@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import styled from 'vue3-styled-components';
 import { useStore } from 'vuex';
 import type { DisplayTodo } from '~/types/todos.types';
 
@@ -8,23 +7,6 @@ const store = useStore();
 const props = defineProps<{
   todo: DisplayTodo;
 }>();
-
-const itemProps = { completed: Boolean };
-
-const StyledItem = styled('div', itemProps)`
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
-  margin: 6px 0;
-  border-radius: 6px;
-  border: 1px solid ${(p: { completed: boolean }) => (p.completed ? '#c3e6cb' : '#dee2e6')};
-  background-color: ${(p: { completed: boolean }) => (p.completed ? '#d4edda' : '#ffffff')};
-  transition: all 0.2s ease;
-
-  &:hover {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  }
-`;
 
 async function onToggle(): Promise<void> {
   try {
@@ -44,7 +26,7 @@ async function onDelete(): Promise<void> {
 </script>
 
 <template>
-  <StyledItem :completed="props.todo.completed">
+  <div class="todo-item" :class="{ 'todo-item--completed': props.todo.completed }">
     <input
       type="checkbox"
       :checked="props.todo.completed"
@@ -75,5 +57,27 @@ async function onDelete(): Promise<void> {
     >
       ✕
     </button>
-  </StyledItem>
+  </div>
 </template>
+
+<style scoped lang="scss">
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &--completed {
+    border-color: #c3e6cb;
+    background-color: #d4edda;
+  }
+}
+</style>

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   },
 
   build: {
-    transpile: ['vuex', 'vue3-styled-components'],
+    transpile: ['vuex'],
   },
   
 
