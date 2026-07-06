@@ -29,30 +29,24 @@ async function onDelete(): Promise<void> {
   <div class="todo-item" :class="{ 'todo-item--completed': props.todo.completed }">
     <input
       type="checkbox"
+      class="todo-item__checkbox"
       :checked="props.todo.completed"
-      style="margin-right: 10px; width: 16px; height: 16px; cursor: pointer"
       @change="onToggle"
     />
 
   <span
-    style="flex: 1"
-    :style="{
-      textDecoration: props.todo.completed ? 'line-through' : 'none',
-      opacity: props.todo.completed ? 0.5 : 1,
-    }"
+    class="todo-item__text"
+    :class="{ 'todo-item__text--completed': props.todo.completed }"
   >
     {{ getDisplayText(props.todo.text) }}
   </span>
 
-    <small
-      style="color: #aaa; margin: 0 10px; font-size: 11px; white-space: nowrap"
-    >
+    <small class="todo-item__date">
       {{ props.todo.displayDate || props.todo.formattedDate || getFormattedDate(props.todo.createdAt)}}
     </small>
 
     <button
-      class="btn btn-xs btn-danger"
-      style="padding: 2px 8px"
+      class="btn btn-xs btn-danger todo-item__delete"
       @click="onDelete"
     >
       ✕
@@ -78,6 +72,35 @@ async function onDelete(): Promise<void> {
   &--completed {
     border-color: #c3e6cb;
     background-color: #d4edda;
+  }
+
+  &__checkbox {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  &__text {
+    flex: 1;
+    text-decoration: none;
+    opacity: 1;
+
+    &--completed {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+  }
+
+  &__date {
+    color: #aaa;
+    margin: 0 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  &__delete {
+    padding: 2px 8px;
   }
 }
 </style>
