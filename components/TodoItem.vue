@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import styled from 'vue3-styled-components';
-import _ from 'lodash';
 import { useStore } from 'vuex';
 import type { DisplayTodo } from '~/types/todos.types';
 
@@ -66,7 +65,7 @@ async function onDelete(): Promise<void> {
     <small
       style="color: #aaa; margin: 0 10px; font-size: 11px; white-space: nowrap"
     >
-      {{ props.todo.displayDate || props.todo.formattedDate }}
+      {{ props.todo.displayDate || props.todo.formattedDate || getFormattedDate(props.todo.createdAt)}}
     </small>
 
     <button
