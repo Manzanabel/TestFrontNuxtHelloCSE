@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "nuxt": "^4.4.6",
+    "vue": "^3.5.16",
+    "vue-router": "^4.5.1",
+    "vue3-styled-components": "^1.0.6",
+    "vuex": "^4.1.0"
+  },
+  "name": "test-tech-todo",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "postinstall": "nuxt prepare",
+    "preview": "nuxt preview"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}
