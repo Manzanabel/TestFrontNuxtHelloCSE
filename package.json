@@ -17,5 +17,9 @@
     "preview": "nuxt preview"
   },
   "type": "module",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "@types/lodash": "^4.17.24",
+    "typescript": "^6.0.3"
+  }
 }

@@ -1,14 +1,21 @@
-<script setup>
+<script setup lang="ts">
 import styled from 'vue3-styled-components';
 import _ from 'lodash';
 import moment from 'moment';
 import { useStore } from 'vuex';
+import type { Todo } from '~/server/utils/todoRepository';
+
+interface DisplayTodo extends Todo {
+  formattedDate?: string;
+  relativeDate?: string;
+  displayDate?: string;
+}
 
 const store = useStore();
 
-const props = defineProps({
-  todo: Object,
-});
+const props = defineProps<{
+  todo: DisplayTodo;
+}>();
 
 const itemProps = { completed: Boolean };
 
@@ -18,8 +25,8 @@ const StyledItem = styled('div', itemProps)`
   padding: 12px 15px;
   margin: 6px 0;
   border-radius: 6px;
-  border: 1px solid ${(p) => (p.completed ? '#c3e6cb' : '#dee2e6')};
-  background-color: ${(p) => (p.completed ? '#d4edda' : '#ffffff')};
+  border: 1px solid ${(p: { completed: boolean }) => (p.completed ? '#c3e6cb' : '#dee2e6')};
+  background-color: ${(p: { completed: boolean }) => (p.completed ? '#d4edda' : '#ffffff')};
   transition: all 0.2s ease;
 
   &:hover {
@@ -27,7 +34,7 @@ const StyledItem = styled('div', itemProps)`
   }
 `;
 
-function onToggle() {
+function onToggle(): void {
   console.log(
     'onToggle appelé pour todo id:',
     props.todo.id,
@@ -38,7 +45,7 @@ function onToggle() {
   store.commit('TOGGLE_TODO', props.todo.id);
 }
 
-function onDelete() {
+function onDelete(): void {
   console.log(
     'onDelete appelé à',
     moment().format('HH:mm:ss'),
@@ -63,11 +70,11 @@ function onDelete() {
   }
 }
 
-function getDisplayText(text) {
+function getDisplayText(text: string): string {
   return _.capitalize(_.trim(text));
 }
 
-function getFormattedDate() {
+function getFormattedDate(): string {
   return moment(props.todo.createdAt).format('LLLL');
 }
 </script>
