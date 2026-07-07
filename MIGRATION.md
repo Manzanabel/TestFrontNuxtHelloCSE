@@ -15,7 +15,7 @@ Ce plan de migration a pour but de rendre le projet plus sûr, plus léger et pl
 
 ### Typescript
 
-Le projet a déjà un `tsconfig.json` et Nuxt 4 génère les types automatiquement (`.nuxt/tsconfig.json`), donc tout est prêt pour l'utiliser. C'est la base des autres chantiers : migrer le store ou les dates sans typer derrière n'apporte qu'une partie du bénéfice.
+Le projet a déjà un `tsconfig.json` et Nuxt 4 génère les types automatiquement (`.nuxt/tsconfig.json`), donc l'outillage est prêt sans configuration supplémentaire. Ça n'enlève pas le travail de typer chaque fichier (définir des interfaces comme `Todo`, ajouter des shims pour certaines libs), mais évite d'avoir à mettre en place TypeScript de zéro.
 
 ### Extraire les strings en dur en constantes
 
