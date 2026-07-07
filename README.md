@@ -17,3 +17,7 @@ Les objectifs sont listés dans le fichier [INSTRUCTIONS](./INSTRUCTIONS.md)
   - Vuex volontairement conservé pour ce composant plutôt qu'une migration locale vers Pinia, pour éviter de créer deux sources de vérité désynchronisées avec les autres composants qui partagent le même state
 
 - **Historique Git** : commits atomiques en Conventional Commits, chaque étape logique (fix, refactor, test, chore) séparée pour rester lisible et facile à suivre.
+
+
+___
+*Note : tous les bugs ne sont pas corrigés, volontairement, le refacto se concentrant sur `TodoItem.vue` pour respecter la consigne d'un seul composant à réécrire.*
