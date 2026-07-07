@@ -20,7 +20,10 @@
   "type": "module",
   "version": "0.1.0",
   "devDependencies": {
+    "@nuxt/test-utils": "^4.0.3",
     "@types/lodash": "^4.17.24",
+    "@vue/test-utils": "^2.4.11",
+    "happy-dom": "^20.10.6",
     "sass": "^1.94.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10"
